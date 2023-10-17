@@ -20,24 +20,9 @@
 				<!-- Header -->
 					<header id="header" class="alt">
 						<a href="index.html" class="logo"><strong>Machine Learning Portfolio</strong> <span>By Esteban Casalás</span></a>
-						<nav>
-							<a href="#menu">Menu</a>
-						</nav>
 					</header>
 
-				<!-- Menu -->
-					<nav id="menu">
-						<ul class="links">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="landing.html">Landing</a></li>
-							<li><a href="generic.html">Generic</a></li>
-							<li><a href="elements.html">Elements</a></li>
-						</ul>
-						<ul class="actions stacked">
-							<li><a href="#" class="button primary fit">Get Started</a></li>
-							<li><a href="#" class="button fit">Log In</a></li>
-						</ul>
-					</nav>
+				
 
 				<!-- Main -->
 					<div id="main" class="alt">
@@ -46,13 +31,56 @@
 							<section id="one">
 								<div class="inner">
 									<header class="major">
-										<h1>Generic</h1>
+										<h1>Titanic:</h1>
 									</header>
-									<span class="image main"><img src="images/pic11.jpg" alt="" /></span>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit.</p>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel sed vehicula.</p>
-									<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.</p>
-								</div>
+									<span class="image main"><img src="images/Titanic/titanic_preview.jpg" alt="" /></span>
+									<blockquote> Image extracted from: https://historia.nationalgeographic.com.es/a/historia-titanic-tragedia-barco-insumergible_16344</blockquote>
+									<p>In this section, we will be working with a dataset containing information about Titanic passengers. Our ultimate goal is to provide a machine learning model that allows us to make a sufficiently accurate prediction of whether the passenger survives the catastrophe or not.</p>
+									<p>The dataset provided includes the following information:
+										<ul>
+											<li><strong>Survived:</strong> Target variable, indicates if the individual survived the catastrophe. (Binomial: yes, no)</li>
+											<li><strong>Passenger Class: </strong>Ticket class, indicates the class of the ticket (Nominal: First, second, third).</li>
+											<li><strong>Name: </strong>Name of the passenger.(Nominal).</li>
+											<li><strong>Sex: </strong>Male or Female(Binomial: F, M).</li>
+											<li><strong>Age: </strong>Age of the passenger in years(Numerical).</li>
+											<li><strong>Number of siblings or spouses on board: </strong>Number of siblings or spouses aboard the Titanic(Numerical).</li>
+											<li><strong>Number of parents or children on board: </strong>Number of parents or children aboard the Titanic(Numerical).</li>
+											<li><strong>Ticket number: </strong>Ticket number(Nominal).</li>
+											<li><strong>Passenger fare: </strong>Passenger fare(Numerical).</li>
+											<li><strong>Cabin number: </strong>Cabin number(Nominal).</li>
+											<li><strong>Port of embarkation: </strong>Port of embarkation (Nominal: Cherbourg, Queenstown, Southampton).</li>
+											<li><strong>Life boat: </strong>Boat the passenger got at the moment of the catastrophe(Nominal).</li>
+										</ul>
+									</p>
+									<h2>Data Preparation</h2>
+									<p>Once the meaning of each variable was understood, the data preparation process began. For this, we started with the treatment of missing values, where there were some severe cases. This is the case of the "Cabin" and "Lifeboat" attributes.
+									   The dataset contains approximately 1300 samples, and in 1000 of these samples, the "Cabin" attribute is not provided. Due to the high number of missing values, there was no choice but to discard the entire column, as it was not feasible to insert these missing data. This could potentially alter the reality represented by the dataset.
+									   The other attribute that was decided to be removed from the dataset was "Lifeboat." It also had a large number of missing values, specifically 823. However, even if this variable had no missing values, it would have been removed due to its close relationship with the target variable and because it's data that cannot be provided before the catastrophe.
+									</p>
+									<p>Once these 2 columns were removed from the dataset, we only have to deal with a few missing values, which mostly belong to the "Age" variable. This attribute initially seems interesting and is believed to have the potential to add value to the model. Therefore, a simple imputation of the mean of the attribute's values was performed as a solution to the missing values. This is not the best approach, but it is a quick one with a decent level of effectiveness. Ideally, inserting values that make sense in the context of the rest of the sample would have been preferable.After this, there are only 3 missing values remaining, which received the same treatment as "Age".</p>
+									<p>Three more columns that were also removed are "Ticket number", "Name" an "Port of embarkation" because they do not provide relevant information to the model and would serve as simple sample identifiers.</p>
+									<h3>Outliers and Distributions</h3>
+									<p>Visualizing the distribution graphs of each attribute, there are outliers present in some of them, such as "Number of siblings or spouses on board," "Number of parents or children on board," and "Passenger fare." Initially, due to a lack of knowledge about lifeboat boarding rules, it was decided not to remove these outliers in the first instance. Later, a comparison will be made with another model in which they are removed.</p>
+									<p>The distributions of the attributes are somewhat unique, so it's not ruled out the possibility of applying attribute normalization, especially in the case of using a distance-based algorithm such as k-NN.</p>
+									<h2>Modelado</h2>
+									<p>After completing the necessary data preparation, it's time to begin the selection of the appropriate modeling algorithm. To do this, we first need to understand the nature of the problem. In this case, the goal is to predict the value of the "Survived" variable, which can take values "yes" or "no," corresponding to a supervised classification problem where the target variable is binary. In the context of such problems, an algorithm that is commonly involved is Logistic Regression. In addition to Logistic Regression, we will compare results with Naive-Bayes and k-NN models.</p>
+									<p>We will proceed to explain the modeling process for the k-NN algorithm. As previously mentioned, models of Naive-Bayes and Logistic Regression will also be trained to compare results.</p>
+									<img src="images/Titanic/kNN-model.png" alt="" width="">
+									<p>Here is the design of the modeling for the three algorithms mentioned earlier. In this process, you can see blocks that handle data preprocessing as described at the beginning of this section, along with blocks for "Cross Validation," an excellent technique for partitioning the dataset into test and training subsets.
+									   The functioning of the cross-validation technique ensures that we make the most of the dataset's samples when they are not abundant, as is the current case.</p>
+									<p>Within each of these blocks, you will find the part of the process where the model is trained, evaluated, and metrics are obtained. As it can be seen on the next image.</p>
+									<img src="images/Titanic/knn-xvalidation-process.png" alt="">
+									<p>One thing to note in this part is the normalization blocks, these are necessary because of the use of distances by the k-NN algorithm. Without normalization, some attributes would disproportionately influence the prediction.</p>
+									<p>After executing this process, the following performance values are obtained.</p>
+									<h3>k-NN Algorithm:</h3>
+									<img src="images/Titanic/knn-accuracy.png" alt="">
+									<h3>Logistic Regression Algorithm:</h3>
+									<img src="images/Titanic/LR-accuracy.png" alt="">
+									<h3>Naive-Bayes Algorithm:</h3>
+									<img src="images/Titanic/NB-accuracy.png" alt="">
+									<h2>Conclusion</h2>
+									<p>In conclusion, the process discussed involves data preparation, modeling, and evaluation of three algorithms: k-NN, Naive-Bayes, and Logistic Regression for a supervised binary classification problem. Through the use of cross-validation techniques and the careful selection of algorithms, it was found that the k-NN algorithm appeared to be the most efficient for the problem as it was modeled. It's important to note that this is just an initial step, and there is always room for further refinement, optimization, and exploration of different approaches. This initial modeling serves as a valuable starting point for future evaluations and improvements.</p>
+									</div>
 							</section>
 
 					</div>
@@ -60,28 +88,7 @@
 				<!-- Contact -->
 					<section id="contact">
 						<div class="inner">
-							<section>
-								<form method="post" action="#">
-									<div class="fields">
-										<div class="field half">
-											<label for="name">Name</label>
-											<input type="text" name="name" id="name" />
-										</div>
-										<div class="field half">
-											<label for="email">Email</label>
-											<input type="text" name="email" id="email" />
-										</div>
-										<div class="field">
-											<label for="message">Message</label>
-											<textarea name="message" id="message" rows="6"></textarea>
-										</div>
-									</div>
-									<ul class="actions">
-										<li><input type="submit" value="Send Message" class="primary" /></li>
-										<li><input type="reset" value="Clear" /></li>
-									</ul>
-								</form>
-							</section>
+							
 							<section class="split">
 								<section>
 									<div class="contact-method">

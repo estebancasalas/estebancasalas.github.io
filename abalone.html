@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Machine Learning Portfolio by Esteban Casalás</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<a href="index.html" class="logo"><strong>Machine Learning Portfolio</strong> <span>By Esteban Casalás</span></a>
+					</header>
+
+				
+
+				<!-- Main -->
+					<div id="main" class="alt">
+
+						<!-- One -->
+							<section id="one">
+								<div class="inner">
+									<header class="major">
+										<h1>Abalone:</h1>
+									</header>
+									<span class="image main"><img src="images/Abalone/abalone-preview.jpg" alt="" /></span>
+									<blockquote> Image extracted from: https://www.treehugger.com/abalone-facts-5180643</blockquote>
+									<p>In this case, we'll be working with a dataset containing information about a mollusk species, the abalone. The goal of this process is to provide an accurate prediction of the age of these mollusks (This dataset can be retrieved from UCI).</p>
+									<p>The dataset provided includes the following information:
+										<ul>
+                                            <li><strong>Sex: </strong>Male or Female(Binomial: F, M).</li>
+                                            <li><strong>Length: </strong>Longest shell measurement(Numerical).</li>
+                                            <li><strong>Diameter: </strong>Perpendicular to length(Numerical).</li>
+                                            <li><strong>Height: </strong>With meat in shell(Numerical).</li>
+                                            <li><strong>Whole weight: </strong>Whole abalone(Numerical).</li>
+                                            <li><strong>Shucked weight: </strong>Weight of meat(Numerical).</li>
+                                            <li><strong>Viscera weight: </strong>Gut weight after bleeding(Numerical).</li>
+                                            <li><strong>Shell weight: </strong>After being dried(Numerical).</li>
+                                            <li><strong>Rings: </strong>Number of rings(Numerical).</li>
+										</ul>
+									</p>
+									<h2>Data Preparation</h2>
+									<p>As we can see, it's a dataset with a limited number of attributes. Initially, we wouldn't want to make significant alterations to these attributes before conducting the initial model training to observe the results. Subsequently, we can apply normalizations to specific variables to assess how it affects the algorithm's performance.</p>
+                                    <p>Something to note in this case is that there is no presence of missing values in any attribute, which is likely due to the scientific nature of the research. This information was obtained from the metadata provided for each variable in the dataset, visualized using the following code.</p>
+                                    <img src="images/Abalone/variable-metadata.png" alt=""> <br><img src="images/Abalone/variable-metadata-2.png" alt="">
+                                    <p>Since we are using a linear regression model, the 'Sex' variable does not lend itself to be used with this algorithm. In this particular case, as gender differences do not contribute significantly to the measurements used in this dataset, the decision was made to remove this column. However, it's important to note that in other cases, different approaches can be considered, such as transforming the gender column from categorical to numeric.</p>
+                                    <p>Another important aspect to consider is the presence of outliers in the dataset. In this case, the presence of outliers is not significant, and the decision was made to leave them in the dataset. However, in other cases, it may be necessary to remove them to avoid skewing the results. All variables exhibited unbiased distributions and showed little presence of outliers, which allowed us to proceed to the next step in the process.</p>
+                                    
+									<h2>Modelado</h2>
+									<p>The modeling in this case is relatively straightforward. We will utilize a Python library for data splitting into training and testing sets. A linear regression model will be created, subsequently trained, evaluated, and appropriate performance metrics will be obtained. To be more specific, the chosen performance metrics are the mean absolute error and mean squared error.</p>
+                                    <img src="images/Abalone/modeling-process.png" alt="">
+                                    <p>The results obtained for this iteration of the modeling process were as follows:</p>
+                                    <img src="images/Abalone/performance.png" alt="">
+
+									<h2>Conclusion</h2>
+									<p>The results obtained from this iteration of the modeling process provide valuable insights into the model's predictive capabilities. This process showcases a structured and effective methodology for predictive modeling, demonstrating that, in this particular case, a linear regression model can perform well in predicting the age of abalones. Further refinements and explorations can (or must) be pursued to enhance the model's performance and gain more insights into the underlying data.</p>
+									</div>
+							</section>
+
+					</div>
+
+				<!-- Contact -->
+					<section id="contact">
+						<div class="inner">
+							
+							<section class="split">
+								<section>
+									<div class="contact-method">
+										<span class="icon solid alt fa-envelope"></span>
+										<h3>Email</h3>
+										<a href="#">e.casalas@outlook.com</a>
+									</div>
+								</section>
+								<section>
+									<div class="contact-method">
+										<span class="icon brands alt fa-linkedin"></span>
+										<h3>LinkedIn</h3>
+										<span>https://www.linkedin.com/in/esteban-casalas/</span>
+									</div>
+								</section>
+							</section>
+						</div>
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<ul class="icons">
+								<li><a href="https://github.com/estebancasalas" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								<li><a href="https://www.linkedin.com/in/esteban-casalas/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+							</ul>
+							<ul class="copyright">
+								<li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
